@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Panel — Abdullah Al Niem</title>
+<style>
+  :root{
+    --bg:#050b0d; --card:#0d171b; --card2:#111d21; --input:#0c1518;
+    --text:#eaf1f2; --muted:#89979c; --dim:#65777c;
+    --border:#1b2b30; --border2:#21343a;
+    --accent:#20c96a; --accent-text:#04110a;
+    --danger:#e5484d; --danger-bg:#2a1417;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    min-height:100vh;
+  }
+  a{color:var(--accent);}
+  h1,h2,h3{margin:0 0 4px;}
+  input,textarea,select{
+    width:100%; background:var(--input); border:1px solid var(--border2);
+    color:var(--text); border-radius:8px; padding:9px 11px; font-size:14px;
+    font-family:inherit;
+  }
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--accent); outline-offset:0;}
+  textarea{resize:vertical; min-height:60px;}
+  label{display:block; font-size:12px; color:var(--muted); margin-bottom:5px; font-weight:600; letter-spacing:.2px;}
+  .field{margin-bottom:12px;}
+  button{
+    cursor:pointer; font-family:inherit; border:1px solid var(--border2);
+    background:var(--card2); color:var(--text); border-radius:8px;
+    padding:8px 14px; font-size:13px; font-weight:600; transition:.15s;
+  }
+  button:hover{border-color:var(--accent);}
+  button.primary{background:var(--accent); color:var(--accent-text); border-color:var(--accent);}
+  button.primary:hover{filter:brightness(1.08);}
+  button.danger{background:var(--danger-bg); color:var(--danger); border-color:#4a2226;}
+  button.danger:hover{border-color:var(--danger);}
+  button.ghost{background:transparent;}
+  button:disabled{opacity:.5; cursor:not-allowed;}
+
+  /* ---------- Login screen ---------- */
+  #loginScreen{
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .login-box{
+    width:100%; max-width:360px; background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:28px;
+  }
+  .login-box h1{font-size:20px;}
+  .login-box p{color:var(--muted); font-size:13px; margin:6px 0 20px;}
+  .login-error{color:var(--danger); font-size:13px; margin-top:10px; min-height:18px;}
+
+  /* ---------- App shell ---------- */
+  #app{display:none;}
+  .topbar{
+    position:sticky; top:0; z-index:10; background:rgba(8,14,17,.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border); padding:14px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  .topbar h1{font-size:16px;}
+  .topbar-right{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  #saveStatus{font-size:12px; color:var(--muted);}
+  #saveStatus.ok{color:var(--accent);}
+  #saveStatus.err{color:var(--danger);}
+
+  .tabs{
+    display:flex; gap:6px; padding:14px 20px 0; border-bottom:1px solid var(--border);
+    overflow-x:auto;
+  }
+  .tab-btn{
+    background:transparent; border:none; border-bottom:2px solid transparent;
+    border-radius:0; padding:10px 6px; color:var(--muted); white-space:nowrap;
+  }
+  .tab-btn.active{color:var(--text); border-bottom-color:var(--accent);}
+
+  .tab-panel{display:none; padding:20px; max-width:900px; margin:0 auto;}
+  .tab-panel.active{display:block;}
+
+  .hint{
+    background:var(--card2); border:1px solid var(--border); border-radius:10px;
+    padding:12px 14px; font-size:13px; color:var(--muted); margin-bottom:18px; line-height:1.6;
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:16px; margin-bottom:16px;
+  }
+  .item-head{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;
+    gap:8px;
+  }
+  .item-head strong{font-size:14px;}
+  .row{display:flex; gap:12px; flex-wrap:wrap;}
+  .row > .field{flex:1 1 200px;}
+
+  .img-field{display:flex; gap:10px; align-items:flex-start;}
+  .img-field .field{flex:1;}
+  .img-preview{
+    width:64px; height:64px; border-radius:8px; object-fit:cover; background:var(--input);
+    border:1px solid var(--border2); flex-shrink:0;
+  }
+  .upload-btn-wrap{display:flex; flex-direction:column; gap:6px; align-items:flex-start;}
+
+  .section-row{
+    background:var(--card2); border:1px solid var(--border); border-radius:10px;
+    padding:12px; margin-bottom:10px;
+  }
+  .section-row .field{margin-bottom:8px;}
+  .section-row-foot{display:flex; justify-content:flex-end;}
+
+  .add-btn-wrap{margin-top:6px; margin-bottom:24px;}
+
+  .badge{
+    display:inline-block; font-size:11px; padding:2px 8px; border-radius:20px;
+    background:var(--card2); color:var(--dim); border:1px solid var(--border2);
+  }
+
+  #toast{
+    position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--card2); border:1px solid var(--border2); color:var(--text);
+    padding:12px 18px; border-radius:10px; font-size:13px; opacity:0; pointer-events:none;
+    transition:.25s; z-index:100; max-width:90vw;
+  }
+  #toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  #toast.ok{border-color:var(--accent);}
+  #toast.err{border-color:var(--danger); color:var(--danger);}
+</style>
+</head>
+<body>
+
+  <!-- ============================================================
+       LOGIN SCREEN
+       ============================================================ -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <h1>🔒 Admin Panel</h1>
+      <p>Password দিয়ে login করুন। এই password টা Netlify-এর <b>ADMIN_PASSWORD</b> environment variable-এ সেট করা থাকবে।</p>
+      <div class="field">
+        <label for="passwordInput">Password</label>
+        <input type="password" id="passwordInput" placeholder="Enter admin password" autocomplete="current-password">
+      </div>
+      <button class="primary" id="loginBtn" style="width:100%;">Login</button>
+      <div class="login-error" id="loginError"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       ADMIN APP
+       ============================================================ -->
+  <div id="app">
+    <div class="topbar">
+      <h1>⚙️ Site Admin</h1>
+      <div class="topbar-right">
+        <span id="saveStatus"></span>
+        <button id="reloadBtn" class="ghost">↺ Reload from server</button>
+        <button id="saveBtn" class="primary">💾 Save All Changes</button>
+        <button id="logoutBtn" class="ghost">Logout</button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="blog">📝 Blog Posts</button>
+      <button class="tab-btn" data-tab="projects">💼 Projects</button>
+      <button class="tab-btn" data-tab="about">👤 About</button>
+      <button class="tab-btn" data-tab="resume">📄 Resume</button>
+    </div>
+
+    <!-- ---------------- BLOG TAB ---------------- -->
+    <div class="tab-panel active" id="tab-blog">
+      <div class="hint">
+        এখানে blog post add/edit/delete করা যাবে। <b>Slug</b> হলো URL-এ যেটা দেখা যায় (যেমন <code>blog-post.html?post=my-slug</code>) — শুধু ছোট হাতের অক্ষর, সংখ্যা আর ড্যাশ (-) ব্যবহার করুন। পরিবর্তন করার পর অবশ্যই উপরে <b>Save All Changes</b> চাপবেন।
+      </div>
+      <div id="blogList"></div>
+      <div class="add-btn-wrap"><button id="addBlogBtn">+ Add New Blog Post</button></div>
+    </div>
+
+    <!-- ---------------- PROJECTS TAB ---------------- -->
+    <div class="tab-panel" id="tab-projects">
+      <div class="hint">
+        Portfolio-এর project card গুলো এখানে edit করুন। <b>Category</b> ফিল্ডে space দিয়ে একাধিক filter tag দিতে পারবেন (যেমন <code>wordpress elementor</code>) — এগুলোই projects section-এর filter বাটনের সাথে মিলবে।
+      </div>
+      <div id="projectsList"></div>
+      <div class="add-btn-wrap"><button id="addProjectBtn">+ Add New Project</button></div>
+    </div>
+
+    <!-- ---------------- ABOUT TAB ---------------- -->
+    <div class="tab-panel" id="tab-about">
+      <div class="hint">About Me সেকশনের paragraph এবং stat badge (যেমন "80+ Happy Clients") এখান থেকে বদলান।</div>
+      <div class="item">
+        <div class="item-head"><strong>Stat Badge</strong></div>
+        <div class="row">
+          <div class="field"><label>Number (e.g. 80+)</label><input id="aboutStatNumber" data-field="statNumber"></div>
+          <div class="field"><label>Label (e.g. Happy Clients)</label><input id="aboutStatLabel" data-field="statLabel"></div>
+        </div>
+      </div>
+      <div id="aboutParagraphs"></div>
+      <div class="add-btn-wrap"><button id="addParagraphBtn">+ Add Paragraph</button></div>
+    </div>
+
+    <!-- ---------------- RESUME TAB ---------------- -->
+    <div class="tab-panel" id="tab-resume">
+      <div class="hint">Work experience, education এবং skills percentage এখান থেকে update করুন।</div>
+
+      <h3>Working Experience</h3>
+      <div id="experienceList"></div>
+      <div class="add-btn-wrap"><button id="addExperienceBtn">+ Add Experience</button></div>
+
+      <h3>Education</h3>
+      <div id="educationList"></div>
+      <div class="add-btn-wrap"><button id="addEducationBtn">+ Add Education</button></div>
+
+      <h3>Core Skills</h3>
+      <div id="skillsList"></div>
+      <div class="add-btn-wrap"><button id="addSkillBtn">+ Add Skill</button></div>
+    </div>
+  </div>
+
+  <input type="file" id="fileInput" accept="image/*" style="display:none">
+  <div id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  var FUNC = '/.netlify/functions';
+  var state = { blogPosts:{}, projects:[], about:{paragraphs:[], statNumber:'', statLabel:''}, resume:{experience:[], education:[], skills:[]} };
+  var pendingUpload = null; // { kind, key, imageInputEl, previewEl }
+
+  /* ---------------- Helpers ---------------- */
+  function esc(str){
+    return String(str==null?'':str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function toast(msg, kind){
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show' + (kind ? ' ' + kind : '');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function(){ el.classList.remove('show'); }, 3500);
+  }
+  function slugify(str){
+    return String(str||'').toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60) || 'post';
+  }
+  function uniqueSlug(base){
+    var slug = base, n = 2;
+    while (state.blogPosts.hasOwnProperty(slug)) { slug = base + '-' + n; n++; }
+    return slug;
+  }
+  function getPassword(){ return sessionStorage.getItem('adminPassword') || ''; }
+
+  /* ---------------- Auth ---------------- */
+  function showLogin(){
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('app').style.display = 'none';
+  }
+  function showApp(){
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+  }
+
+  function verifyPassword(pw){
+    return fetch(FUNC + '/verify', { method:'POST', headers:{'x-admin-password':pw} })
+      .then(function(res){ return res.ok; })
+      .catch(function(){ return false; });
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', doLogin);
+  document.getElementById('passwordInput').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') doLogin();
+  });
+
+  function doLogin(){
+    var pw = document.getElementById('passwordInput').value;
+    var errEl = document.getElementById('loginError');
+    errEl.textContent = '';
+    if (!pw) { errEl.textContent = 'Password লিখুন।'; return; }
+
+    var btn = document.getElementById('loginBtn');
+    btn.disabled = true; btn.textContent = 'Checking...';
+
+    verifyPassword(pw).then(function(ok){
+      btn.disabled = false; btn.textContent = 'Login';
+      if (ok) {
+        sessionStorage.setItem('adminPassword', pw);
+        showApp();
+        loadData();
+      } else {
+        errEl.textContent = 'ভুল password, আবার চেষ্টা করুন।';
+      }
+    });
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', function(){
+    sessionStorage.removeItem('adminPassword');
+    showLogin();
+  });
+
+  /* ---------------- Load / Save ---------------- */
+  function loadData(){
+    setSaveStatus('Loading...', '');
+    fetch(FUNC + '/data', { cache:'no-store' })
+      .then(function(res){
+        return res.json().catch(function(){ return null; }).then(function(body){
+          return { ok: res.ok, status: res.status, body: body };
+        });
+      })
+      .then(function(r){
+        if (!r.ok) {
+          var detail = (r.body && r.body.error) ? r.body.error : ('HTTP ' + r.status);
+          throw new Error(detail);
+        }
+        var data = r.body;
+        state.blogPosts = data.blogPosts || {};
+        state.projects = data.projects || [];
+        state.about = data.about || { paragraphs:[], statNumber:'', statLabel:'' };
+        state.resume = data.resume || { experience:[], education:[], skills:[] };
+        renderAll();
+        setSaveStatus('Loaded ✓', 'ok');
+      })
+      .catch(function(err){
+        setSaveStatus('Failed to load data.', 'err');
+        toast('Data load করা যায়নি — ' + (err && err.message ? err.message : 'unknown error'), 'err');
+      });
+  }
+
+  function setSaveStatus(msg, kind){
+    var el = document.getElementById('saveStatus');
+    el.textContent = msg;
+    el.className = kind || '';
+  }
+
+  document.getElementById('reloadBtn').addEventListener('click', function(){
+    if (confirm('Server থেকে আবার load করলে এখনো save না করা পরিবর্তনগুলো হারিয়ে যাবে। এগিয়ে যাবেন?')) {
+      loadData();
+    }
+  });
+
+  document.getElementById('saveBtn').addEventListener('click', function(){
+    var btn = this;
+    btn.disabled = true;
+    setSaveStatus('Saving...', '');
+    fetch(FUNC + '/data', {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'x-admin-password':getPassword() },
+      body: JSON.stringify(state)
+    })
+      .then(function(res){
+        return res.json().then(function(body){ return { ok: res.ok, body: body }; });
+      })
+      .then(function(r){
+        btn.disabled = false;
+        if (r.ok) {
+          setSaveStatus('Saved ✓ (' + new Date().toLocaleTimeString() + ')', 'ok');
+          toast('সব পরিবর্তন সেভ হয়ে গেছে। এখন সাইট রিফ্রেশ করলেই নতুন data দেখা যাবে।', 'ok');
+        } else {
+          setSaveStatus('Save failed', 'err');
+          toast('Error: ' + (r.body && r.body.error ? r.body.error : 'unknown error'), 'err');
+        }
+      })
+      .catch(function(){
+        btn.disabled = false;
+        setSaveStatus('Save failed (network)', 'err');
+        toast('Network error — save করা যায়নি।', 'err');
+      });
+  });
+
+  /* ---------------- Tabs ---------------- */
+  document.querySelectorAll('.tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  function renderAll(){
+    renderBlog();
+    renderProjects();
+    renderAbout();
+    renderResume();
+  }
+
+  /* ============================================================
+     BLOG TAB
+     ============================================================ */
+  var BLOG_FILTER_OPTIONS = [
+    ['ai','AI & Design'], ['web','Web Design'], ['tutorial','Tutorials'],
+    ['career','Career Tips'], ['graphic','Graphic Design']
+  ];
+  var COVER_CLASSES = ['b1','b2','b3','b4','b5','b6'];
+
+  function renderBlog(){
+    var wrap = document.getElementById('blogList');
+    var keys = Object.keys(state.blogPosts);
+
+    if (!keys.length) {
+      wrap.innerHTML = '<p style="color:var(--muted)">কোনো blog post নেই। "+ Add New Blog Post" চেপে একটা বানান।</p>';
+      return;
+    }
+
+    wrap.innerHTML = keys.map(function(key){
+      var p = state.blogPosts[key];
+      var sections = Array.isArray(p.sections) ? p.sections : [];
+
+      var sectionsHtml = sections.map(function(sec, si){
+        return (
+          '<div class="section-row" data-key="' + esc(key) + '" data-section-index="' + si + '">' +
+            '<div class="field"><label>Section heading</label><input data-blog-section-field="0" value="' + esc(sec[0]) + '"></div>' +
+            '<div class="field"><label>Section text</label><textarea data-blog-section-field="1">' + esc(sec[1]) + '</textarea></div>' +
+            '<div class="section-row-foot"><button class="danger" data-action="remove-section" data-key="' + esc(key) + '" data-section-index="' + si + '">Remove section</button></div>' +
+          '</div>'
+        );
+      }).join('');
+
+      var filterOptionsHtml = BLOG_FILTER_OPTIONS.map(function(o){
+        return '<option value="' + o[0] + '"' + (p.filterCat===o[0]?' selected':'') + '>' + o[1] + '</option>';
+      }).join('');
+
+      var coverOptionsHtml = COVER_CLASSES.map(function(c){
+        return '<option value="' + c + '"' + (p.coverClass===c?' selected':'') + '>' + c + '</option>';
+      }).join('');
+
+      return (
+        '<div class="item" data-key="' + esc(key) + '">' +
+          '<div class="item-head">' +
+            '<strong>' + esc(p.title || '(untitled)') + '</strong>' +
+            '<button class="danger" data-action="remove-blog" data-key="' + esc(key) + '">🗑 Delete post</button>' +
+          '</div>' +
+
+          '<div class="row">' +
+            '<div class="field"><label>Slug (URL) <span class="badge">?post=' + esc(key) + '</span></label>' +
+              '<input data-action="rename-blog" data-key="' + esc(key) + '" value="' + esc(key) + '"></div>' +
+            '<div class="field"><label>Filter category</label>' +
+              '<select data-blog-field="filterCat" data-key="' + esc(key) + '">' + filterOptionsHtml + '</select></div>' +
+          '</div>' +
+
+          '<div class="row">' +
+            '<div class="field"><label>Title</label><input data-blog-field="title" data-key="' + esc(key) + '" value="' + esc(p.title) + '"></div> ' +
+            '<div class="field"><label>Category label (badge text)</label><input data-blog-field="cat" data-key="' + esc(key) + '" value="' + esc(p.cat) + '"></div>' +
+          '</div>' +
+
+          '<div class="row">' +
+            '<div class="field"><label>Date</label><input data-blog-field="date" data-key="' + esc(key) + '" value="' + esc(p.date) + '" placeholder="Apr 1, 2026"></div>' +
+            '<div class="field"><label>Cover accent</label><select data-blog-field="coverClass" data-key="' + esc(key) + '">' + coverOptionsHtml + '</select></div>' +
+          '</div>' +
+
+          '<div class="field img-field">' +
+            '<img class="img-preview" src="' + esc(p.img) + '" onerror="this.style.opacity=0.2">' +
+            '<div class="field">' +
+              '<label>Cover image URL</label>' +
+              '<input data-blog-field="img" data-key="' + esc(key) + '" value="' + esc(p.img) + '">' +
+              '<div class="upload-btn-wrap" style="margin-top:6px;"><button data-action="upload" data-kind="blog" data-key="' + esc(key) + '" type="button">📤 Upload image</button></div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="field"><label>Card excerpt (short, shown on the blog list card)</label>' +
+            '<textarea data-blog-field="excerpt" data-key="' + esc(key) + '">' + esc(p.excerpt) + '</textarea></div>' +
+
+          '<div class="field"><label>Article intro (shown at the top of the full article)</label>' +
+            '<textarea data-blog-field="intro" data-key="' + esc(key) + '">' + esc(p.intro) + '</textarea></div>' +
+
+          '<label style="margin-top:6px;">Article sections</label>' +
+          sectionsHtml +
+          '<button data-action="add-section" data-key="' + esc(key) + '" type="button">+ Add section</button>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  document.getElementById('addBlogBtn').addEventListener('click', function(){
+    var slug = uniqueSlug('new-post');
+    state.blogPosts[slug] = {
+      cat:'General', date:'', title:'New Blog Post', coverClass:'b1', filterCat:'web',
+      img:'', excerpt:'', intro:'', sections:[]
+    };
+    renderBlog();
+    toast('নতুন blog post যোগ হয়েছে — নিচে edit করুন, তারপর Save All Changes চাপুন।', 'ok');
+  });
+
+  // Delegated: simple field edits (no re-render needed)
+  document.getElementById('blogList').addEventListener('input', function(e){
+    var t = e.target;
+    if (t.dataset.blogField) {
+      state.blogPosts[t.dataset.key][t.dataset.blogField] = t.value;
+      if (t.dataset.blogField === 'title') {
+        var head = t.closest('.item').querySelector('.item-head strong');
+        if (head) head.textContent = t.value || '(untitled)';
+      }
+      if (t.dataset.blogField === 'img') {
+        var prev = t.closest('.item').querySelector('.img-preview');
+        if (prev) prev.src = t.value;
+      }
+    }
+    if (t.dataset.blogSectionField !== undefined) {
+      var row = t.closest('.section-row');
+      var key = row.dataset.key, si = parseInt(row.dataset.sectionIndex, 10);
+      state.blogPosts[key].sections[si][parseInt(t.dataset.blogSectionField,10)] = t.value;
+    }
+  });
+
+  // Delegated: structural changes (re-render)
+  document.getElementById('blogList').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    var action = btn.dataset.action;
+
+    if (action === 'remove-blog') {
+      if (confirm('এই blog post টা delete করবেন? এটা Save করার পর permanent হয়ে যাবে।')) {
+        delete state.blogPosts[btn.dataset.key];
+        renderBlog();
+      }
+    } else if (action === 'add-section') {
+      state.blogPosts[btn.dataset.key].sections.push(['New heading', 'New paragraph text.']);
+      renderBlog();
+    } else if (action === 'remove-section') {
+      var si = parseInt(btn.dataset.sectionIndex, 10);
+      state.blogPosts[btn.dataset.key].sections.splice(si, 1);
+      renderBlog();
+    } else if (action === 'upload') {
+      startUpload({ kind:'blog', key:btn.dataset.key });
+    }
+  });
+
+  // Rename slug on blur (change event), not on every keystroke
+  document.getElementById('blogList').addEventListener('change', function(e){
+    var t = e.target;
+    if (t.dataset.action === 'rename-blog') {
+      var oldKey = t.dataset.key;
+      var newKey = slugify(t.value);
+      if (!newKey || newKey === oldKey) { t.value = oldKey; return; }
+      if (state.blogPosts.hasOwnProperty(newKey)) {
+        toast('এই slug আগে থেকেই আছে, অন্য নাম দিন।', 'err');
+        t.value = oldKey;
+        return;
+      }
+      state.blogPosts[newKey] = state.blogPosts[oldKey];
+      delete state.blogPosts[oldKey];
+      renderBlog();
+    }
+  });
+
+  /* ============================================================
+     PROJECTS TAB
+     ============================================================ */
+  function renderProjects(){
+    var wrap = document.getElementById('projectsList');
+    if (!state.projects.length) {
+      wrap.innerHTML = '<p style="color:var(--muted)">কোনো project নেই। "+ Add New Project" চেপে একটা বানান।</p>';
+      return;
+    }
+    wrap.innerHTML = state.projects.map(function(p, idx){
+      return (
+        '<div class="item" data-idx="' + idx + '">' +
+          '<div class="item-head">' +
+            '<strong>' + esc(p.title || '(untitled)') + '</strong>' +
+            '<button class="danger" data-action="remove-project" data-idx="' + idx + '">🗑 Delete</button>' +
+          '</div>' +
+          '<div class="row">' +
+            '<div class="field"><label>Title</label><input data-proj-field="title" data-idx="' + idx + '" value="' + esc(p.title) + '"></div>' +
+            '<div class="field"><label>Project URL</label><input data-proj-field="url" data-idx="' + idx + '" value="' + esc(p.url) + '"></div>' +
+          '</div>' +
+          '<div class="row">' +
+            '<div class="field"><label>Category (filter tags, space-separated)</label><input data-proj-field="category" data-idx="' + idx + '" value="' + esc(p.category) + '" placeholder="wordpress elementor"></div>' +
+            '<div class="field"><label>Tag label (shown on the card)</label><input data-proj-field="tag" data-idx="' + idx + '" value="' + esc(p.tag) + '" placeholder="WordPress · Elementor"></div>' +
+          '</div>' +
+          '<div class="field"><label>Description</label><textarea data-proj-field="desc" data-idx="' + idx + '">' + esc(p.desc) + '</textarea></div>' +
+          '<div class="field img-field">' +
+            '<img class="img-preview" src="' + esc(p.image) + '" onerror="this.style.opacity=0.2">' +
+            '<div class="field">' +
+              '<label>Screenshot URL</label>' +
+              '<input data-proj-field="image" data-idx="' + idx + '" value="' + esc(p.image) + '">' +
+              '<div class="upload-btn-wrap" style="margin-top:6px;"><button data-action="upload" data-kind="project" data-idx="' + idx + '" type="button">📤 Upload image</button></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  document.getElementById('addProjectBtn').addEventListener('click', function(){
+    state.projects.push({ id:'p-'+Date.now(), category:'wordpress elementor', tag:'WordPress · Elementor', title:'New Project', desc:'', image:'', url:'' });
+    renderProjects();
+    toast('নতুন project যোগ হয়েছে — নিচে edit করুন, তারপর Save All Changes চাপুন।', 'ok');
+  });
+
+  document.getElementById('projectsList').addEventListener('input', function(e){
+    var t = e.target;
+    if (t.dataset.projField) {
+      var idx = parseInt(t.dataset.idx, 10);
+      state.projects[idx][t.dataset.projField] = t.value;
+      if (t.dataset.projField === 'title') {
+        var head = t.closest('.item').querySelector('.item-head strong');
+        if (head) head.textContent = t.value || '(untitled)';
+      }
+      if (t.dataset.projField === 'image') {
+        var prev = t.closest('.item').querySelector('.img-preview');
+        if (prev) prev.src = t.value;
+      }
+    }
+  });
+
+  document.getElementById('projectsList').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    if (btn.dataset.action === 'remove-project') {
+      if (confirm('এই project টা delete করবেন?')) {
+        state.projects.splice(parseInt(btn.dataset.idx,10), 1);
+        renderProjects();
+      }
+    } else if (btn.dataset.action === 'upload') {
+      startUpload({ kind:'project', idx: parseInt(btn.dataset.idx,10) });
+    }
+  });
+
+  /* ============================================================
+     ABOUT TAB
+     ============================================================ */
+  function renderAbout(){
+    document.getElementById('aboutStatNumber').value = state.about.statNumber || '';
+    document.getElementById('aboutStatLabel').value = state.about.statLabel || '';
+
+    var wrap = document.getElementById('aboutParagraphs');
+    var paras = state.about.paragraphs || [];
+    wrap.innerHTML = paras.map(function(p, idx){
+      return (
+        '<div class="item">' +
+          '<div class="item-head"><strong>Paragraph ' + (idx+1) + '</strong>' +
+          '<button class="danger" data-action="remove-paragraph" data-idx="' + idx + '">🗑 Remove</button></div>' +
+          '<textarea data-about-para-idx="' + idx + '">' + esc(p) + '</textarea>' +
+        '</div>'
+      );
+    }).join('');
+  }
+
+  document.getElementById('aboutStatNumber').addEventListener('input', function(){ state.about.statNumber = this.value; });
+  document.getElementById('aboutStatLabel').addEventListener('input', function(){ state.about.statLabel = this.value; });
+
+  document.getElementById('addParagraphBtn').addEventListener('click', function(){
+    state.about.paragraphs.push('');
+    renderAbout();
+  });
+
+  document.getElementById('aboutParagraphs').addEventListener('input', function(e){
+    var t = e.target;
+    if (t.dataset.aboutParaIdx !== undefined) {
+      state.about.paragraphs[parseInt(t.dataset.aboutParaIdx,10)] = t.value;
+    }
+  });
+  document.getElementById('aboutParagraphs').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action="remove-paragraph"]');
+    if (!btn) return;
+    state.about.paragraphs.splice(parseInt(btn.dataset.idx,10), 1);
+    renderAbout();
+  });
+
+  /* ============================================================
+     RESUME TAB
+     ============================================================ */
+  function renderResume(){
+    var expWrap = document.getElementById('experienceList');
+    expWrap.innerHTML = (state.resume.experience||[]).map(function(item, idx){
+      return (
+        '<div class="item">' +
+          '<div class="item-head"><strong>' + esc(item.title || 'Experience ' + (idx+1)) + '</strong>' +
+          '<button class="danger" data-action="remove-exp" data-idx="' + idx + '">🗑 Remove</button></div>' +
+          '<div class="row">' +
+            '<div class="field"><label>Year range</label><input data-exp-field="year" data-idx="' + idx + '" value="' + esc(item.year) + '" placeholder="Oct 2025 – Apr 2026"></div>' +
+            '<div class="field"><label>Job title</label><input data-exp-field="title" data-idx="' + idx + '" value="' + esc(item.title) + '"></div>' +
+          '</div>' +
+          '<div class="field"><label>Company / location</label><input data-exp-field="company" data-idx="' + idx + '" value="' + esc(item.company) + '"></div>' +
+          '<div class="field"><label>Description</label><textarea data-exp-field="desc" data-idx="' + idx + '">' + esc(item.desc) + '</textarea></div>' +
+        '</div>'
+      );
+    }).join('') || '<p style="color:var(--muted)">কোনো experience নেই।</p>';
+
+    var eduWrap = document.getElementById('educationList');
+    eduWrap.innerHTML = (state.resume.education||[]).map(function(item, idx){
+      return (
+        '<div class="item">' +
+          '<div class="item-head"><strong>' + esc(item.school || 'Education ' + (idx+1)) + '</strong>' +
+          '<button class="danger" data-action="remove-edu" data-idx="' + idx + '">🗑 Remove</button></div>' +
+          '<div class="row">' +
+            '<div class="field"><label>Icon (emoji)</label><input data-edu-field="icon" data-idx="' + idx + '" value="' + esc(item.icon) + '"></div>' +
+            '<div class="field"><label>School / college</label><input data-edu-field="school" data-idx="' + idx + '" value="' + esc(item.school) + '"></div>' +
+          '</div>' +
+          '<div class="field"><label>Degree / duration</label><input data-edu-field="degree" data-idx="' + idx + '" value="' + esc(item.degree) + '"></div>' +
+          '<div class="field"><label>Result</label><input data-edu-field="result" data-idx="' + idx + '" value="' + esc(item.result) + '"></div>' +
+        '</div>'
+      );
+    }).join('') || '<p style="color:var(--muted)">কোনো education নেই।</p>';
+
+    var skillWrap = document.getElementById('skillsList');
+    skillWrap.innerHTML = (state.resume.skills||[]).map(function(item, idx){
+      return (
+        '<div class="item">' +
+          '<div class="row">' +
+            '<div class="field"><label>Skill name</label><input data-skill-field="name" data-idx="' + idx + '" value="' + esc(item.name) + '"></div>' +
+            '<div class="field"><label>Percent (0-100)</label><input type="number" min="0" max="100" data-skill-field="percent" data-idx="' + idx + '" value="' + esc(item.percent) + '"></div>' +
+            '<button class="danger" data-action="remove-skill" data-idx="' + idx + '" style="align-self:flex-end;">🗑</button>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('') || '<p style="color:var(--muted)">কোনো skill নেই।</p>';
+  }
+
+  document.getElementById('addExperienceBtn').addEventListener('click', function(){
+    state.resume.experience.push({ year:'', title:'New Role', company:'', desc:'' });
+    renderResume();
+  });
+  document.getElementById('addEducationBtn').addEventListener('click', function(){
+    state.resume.education.push({ icon:'🎓', school:'', degree:'', result:'' });
+    renderResume();
+  });
+  document.getElementById('addSkillBtn').addEventListener('click', function(){
+    state.resume.skills.push({ name:'New Skill', percent:'80' });
+    renderResume();
+  });
+
+  document.getElementById('experienceList').addEventListener('input', function(e){
+    var t = e.target;
+    if (t.dataset.expField) {
+      state.resume.experience[parseInt(t.dataset.idx,10)][t.dataset.expField] = t.value;
+    }
+  });
+  document.getElementById('experienceList').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action="remove-exp"]');
+    if (!btn) return;
+    state.resume.experience.splice(parseInt(btn.dataset.idx,10), 1);
+    renderResume();
+  });
+
+  document.getElementById('educationList').addEventListener('input', function(e){
+    var t = e.target;
+    if (t.dataset.eduField) {
+      state.resume.education[parseInt(t.dataset.idx,10)][t.dataset.eduField] = t.value;
+    }
+  });
+  document.getElementById('educationList').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action="remove-edu"]');
+    if (!btn) return;
+    state.resume.education.splice(parseInt(btn.dataset.idx,10), 1);
+    renderResume();
+  });
+
+  document.getElementById('skillsList').addEventListener('input', function(e){
+    var t = e.target;
+    if (t.dataset.skillField) {
+      state.resume.skills[parseInt(t.dataset.idx,10)][t.dataset.skillField] = t.value;
+    }
+  });
+  document.getElementById('skillsList').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-action="remove-skill"]');
+    if (!btn) return;
+    state.resume.skills.splice(parseInt(btn.dataset.idx,10), 1);
+    renderResume();
+  });
+
+  /* ============================================================
+     IMAGE UPLOAD (shared hidden file input)
+     ============================================================ */
+  var fileInput = document.getElementById('fileInput');
+
+  function startUpload(target){
+    pendingUpload = target;
+    fileInput.value = '';
+    fileInput.click();
+  }
+
+  fileInput.addEventListener('change', function(){
+    var file = fileInput.files && fileInput.files[0];
+    if (!file || !pendingUpload) return;
+
+    if (file.size > 4.5 * 1024 * 1024) {
+      toast('ছবিটা 4.5MB এর চেয়ে ছোট হতে হবে।', 'err');
+      return;
+    }
+
+    toast('ছবি upload হচ্ছে...', '');
+    var reader = new FileReader();
+    reader.onload = function(){
+      var base64 = reader.result.split(',')[1];
+      fetch(FUNC + '/upload', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json', 'x-admin-password':getPassword() },
+        body: JSON.stringify({ filename:file.name, contentType:file.type, dataBase64:base64 })
+      })
+        .then(function(res){ return res.json().then(function(b){ return { ok:res.ok, body:b }; }); })
+        .then(function(r){
+          if (!r.ok) { toast('Upload failed: ' + (r.body.error||'unknown'), 'err'); return; }
+          applyUploadedUrl(pendingUpload, r.body.url);
+          toast('ছবি upload হয়ে গেছে ✓', 'ok');
+        })
+        .catch(function(){ toast('Upload failed (network error)', 'err'); });
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function applyUploadedUrl(target, url){
+    if (target.kind === 'blog') {
+      state.blogPosts[target.key].img = url;
+      renderBlog();
+    } else if (target.kind === 'project') {
+      state.projects[target.idx].image = url;
+      renderProjects();
+    }
+  }
+
+  /* ---------------- Boot ---------------- */
+  var savedPw = getPassword();
+  if (savedPw) {
+    verifyPassword(savedPw).then(function(ok){
+      if (ok) { showApp(); loadData(); }
+      else { sessionStorage.removeItem('adminPassword'); showLogin(); }
+    });
+  } else {
+    showLogin();
+  }
+})();
+</script>
+</body>
+</html>

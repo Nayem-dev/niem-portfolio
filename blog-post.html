@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ============================================================
+       META & TITLE
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Article — Abdullah Al Niem</title>
+
+  <!-- ============================================================
+       FONTS
+       ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- ============================================================
+       STYLESHEET
+       ============================================================ -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+       ARTICLE SHELL - Standalone Blog Post Page
+       ============================================================ -->
+  <div class="article-shell">
+
+    <!-- Back link to portfolio homepage -->
+    <a class="back-link" href="index.html">← Back to Portfolio</a>
+
+    <!-- Main Article -->
+    <article class="article">
+
+      <!-- Dynamic Cover Image (class will be set by JavaScript) -->
+      <div class="article-cover" id="cover"></div>
+
+      <!-- Article Content -->
+      <div class="article-content">
+
+        <!-- Category Eyebrow -->
+        <span class="eyebrow" id="category">ARTICLE</span>
+
+        <!-- Article Title -->
+        <h1 id="title">Blog Article</h1>
+
+        <!-- Meta Info (date + author) -->
+        <div class="article-meta" id="meta"></div>
+
+        <!-- Article Body (will be populated by JavaScript) -->
+        <div class="article-body" id="body"></div>
+
+      </div>
+      <!-- /.article-content -->
+
+    </article>
+    <!-- /.article -->
+
+  </div>
+  <!-- /.article-shell -->
+
+
+  <!-- ============================================================
+       JAVASCRIPT - Blog Post Loader
+       ============================================================ -->
+  <script>
+    /**
+     * Blog post data store
+     * Each post contains: category, date, title, cover image variant, intro, and sections
+     */
+    const posts = {
+      'ai-tools': {
+        cat: 'AI & Design',
+        date: 'Apr 1, 2026',
+        title: 'AI Design Tools: Midjourney, DALL-E & Adobe Firefly',
+        cover: 'a',
+        img: 'images/blog/ai-design-tools.jpg',
+        intro: 'AI design tools are changing the way creative professionals explore ideas, build concepts and move from rough direction to polished visual output.',
+        sections: [
+          [
+            'Why AI tools matter',
+            'The best use of AI is not replacing creative thinking. It is accelerating exploration. Designers can test compositions, art directions, visual moods and concepts in minutes, then refine the strongest direction with traditional design tools.'
+          ],
+          [
+            'A practical workflow',
+            'Start with a clear brief, generate several visual directions, shortlist the strongest concepts, refine the selected direction and finally prepare production-ready assets. Keeping the human review step is essential for consistency and brand quality.'
+          ],
+          [
+            'Choosing the right tool',
+            'Use image-generation tools when you need concept exploration, editing tools when you need precise control, and collaborative design tools when the final interface needs structured layouts and reusable components.'
+          ]
+        ]
+      },
+
+      'uiux-basics': {
+        cat: 'Web Design',
+        date: 'Apr 19, 2026',
+        title: 'UI/UX Design Basics: App & Website Fundamentals',
+        cover: 'b',
+        img: 'images/blog/uiux-design-basics.jpg',
+        intro: 'A strong interface starts with clarity. Good UI/UX helps users understand what they can do, where they are and what should happen next.',
+        sections: [
+          [
+            'Start with user goals',
+            'Before choosing colors or components, understand the user task. A clear hierarchy should make the primary action obvious and reduce unnecessary decisions.'
+          ],
+          [
+            'Structure before decoration',
+            'Wireframes, content hierarchy and spacing should be solved before visual polish. This makes the final design more consistent and easier to develop responsively.'
+          ],
+          [
+            'Design for every screen',
+            'Responsive design is not just shrinking desktop content. Layouts, type scale, spacing and interactions should adapt intentionally across desktop, tablet and mobile.'
+          ]
+        ]
+      },
+
+      'ai-web-design': {
+        cat: 'AI & Design',
+        date: 'Apr 3, 2026',
+        title: 'How AI Is Changing Modern Web Design',
+        cover: 'c',
+        img: 'images/blog/ai-web-design.jpg',
+        intro: 'AI is becoming part of the modern design workflow, from research and copy exploration to visual concepts and development assistance.',
+        sections: [
+          [
+            'Faster exploration',
+            'AI can help generate multiple directions quickly. This is useful during discovery when a team needs to compare ideas before committing to one visual language.'
+          ],
+          [
+            'Human taste still matters',
+            'Generated output can be inconsistent. Designers and developers still need to judge usability, accessibility, brand fit, performance and technical feasibility.'
+          ],
+          [
+            'A better workflow',
+            'Treat AI as a creative assistant. Give it constraints, review the output critically and use it to remove repetitive work rather than removing the design thinking itself.'
+          ]
+        ]
+      },
+
+      'responsive-wordpress': {
+        cat: 'Tutorials',
+        date: 'Mar 22, 2026',
+        title: 'How to Build a Responsive WordPress Website',
+        cover: 'd',
+        img: 'images/blog/responsive-wordpress.jpg',
+        intro: 'Responsive WordPress development requires more than making a page look good on desktop. Every section needs a deliberate mobile and tablet behavior.',
+        sections: [
+          [
+            'Build a flexible structure',
+            'Use a consistent container width, sensible spacing and flexible columns. Avoid fixed dimensions that can cause overflow on smaller screens.'
+          ],
+          [
+            'Check real breakpoints',
+            'Test navigation, typography, images, forms and cards at several viewport sizes. A layout that works at one mobile width may still break at another.'
+          ],
+          [
+            'Optimize the final experience',
+            'Compress images, remove unnecessary scripts and keep interactions lightweight. Performance and usability should be treated as part of the design.'
+          ]
+        ]
+      },
+
+      'developer-portfolio': {
+        cat: 'Career Tips',
+        date: 'Mar 10, 2026',
+        title: 'How to Build a Strong Developer Portfolio',
+        cover: 'e',
+        img: 'images/blog/developer-portfolio.jpg',
+        intro: 'A portfolio should quickly communicate what you do, what you have built and why a client should trust your work.',
+        sections: [
+          [
+            'Show outcomes',
+            'Instead of only listing technologies, explain the problem, your role, the solution and the result. A concise case study is more useful than a long list of tools.'
+          ],
+          [
+            'Make projects easy to explore',
+            'Use filters, strong thumbnails, short summaries and a clear project link. Visitors should reach the relevant work without searching through a crowded page.'
+          ],
+          [
+            'Keep it current',
+            'Remove weak or outdated examples and keep the portfolio focused on the type of work you want next.'
+          ]
+        ]
+      },
+
+      'design-systems': {
+        cat: 'Graphic Design',
+        date: 'Feb 28, 2026',
+        title: 'Design Systems for Consistent Branding',
+        cover: 'f',
+        img: 'images/blog/design-systems.jpg',
+        intro: 'A small design system can make a website feel more professional by keeping colors, typography, components and spacing consistent.',
+        sections: [
+          [
+            'Define the foundations',
+            'Choose your core colors, type scale, spacing rhythm, border radius and common shadows. These foundations become the visual rules for the interface.'
+          ],
+          [
+            'Create reusable components',
+            'Buttons, cards, form fields, navigation and badges should follow repeatable patterns. This reduces visual drift as the website grows.'
+          ],
+          [
+            'Document simple rules',
+            'A useful system does not need to be huge. Clear examples and a few practical rules are enough to help designers and developers stay aligned.'
+          ]
+        ]
+      }
+    };
+
+    /**
+     * Renders whichever post is requested in the URL, using whatever data
+     * is currently in `posts` (either the built-in copy above, or the live
+     * version loaded from the admin panel, if available).
+     */
+    function renderPost() {
+      // ----- Get the post key from URL query parameter -----
+      const urlParams = new URLSearchParams(location.search);
+      const postKey = urlParams.get('post') || 'ai-tools';
+
+      // Fallback to default if key is invalid
+      const post = posts[postKey] || posts['ai-tools'];
+
+      // ----- Update page content with post data -----
+
+      // Update page title
+      document.title = post.title + ' — Abdullah Al Niem';
+
+      // Update category (eyebrow)
+      document.getElementById('category').textContent = post.cat.toUpperCase();
+
+      // Update title
+      document.getElementById('title').textContent = post.title;
+
+      // Update meta (date + author)
+      document.getElementById('meta').textContent = post.date + '  ·  Abdullah Al Niem';
+
+      // Set cover image class (CSS background gradient)
+      document.getElementById('cover').className = 'article-cover cover-' + post.cover;
+      document.getElementById('cover').innerHTML =
+        '<img src="' + post.img + '" alt="' + post.title + '" onerror="this.remove()">';
+
+      // Build article body HTML
+      const sectionsHTML = post.sections
+        .map(function(section) {
+          return '<h2>' + section[0] + '</h2><p>' + section[1] + '</p>';
+        })
+        .join('');
+
+      const ctaHTML =
+        '<div class="article-cta">' +
+          '<strong>Need a website for your next project?</strong>' +
+          '<a href="index.html#contact">Let’s work together →</a>' +
+        '</div>';
+
+      document.getElementById('body').innerHTML =
+        '<p class="article-intro">' + post.intro + '</p>' +
+        sectionsHTML +
+        ctaHTML;
+    }
+
+    // Paint immediately with the built-in copy, then try to refresh with
+    // live data from the admin panel (falls back silently if unavailable).
+    renderPost();
+
+    fetch('/.netlify/functions/data', { cache: 'no-store' })
+      .then(function(res) {
+        if (!res.ok) throw new Error('bad response');
+        return res.json();
+      })
+      .then(function(data) {
+        if (data && data.blogPosts) {
+          Object.keys(data.blogPosts).forEach(function(k) { posts[k] = data.blogPosts[k]; });
+          renderPost();
+        }
+      })
+      .catch(function() {
+        // Offline or function not deployed yet — the built-in copy already rendered above.
+      });
+  </script>
+
+</body>
+</html>

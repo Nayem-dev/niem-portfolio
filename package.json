@@ -1,0 +1,7 @@
+{
+  "name": "abdullah-al-niem-portfolio",
+  "private": true,
+  "dependencies": {
+    "@netlify/blobs": "^11.1.0"
+  }
+}

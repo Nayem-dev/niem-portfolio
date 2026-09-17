@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Abdullah Al Niem — WordPress Developer & Shopify Expert portfolio." />
+  <title>Abdullah Al Niem — Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/abdullah-al-niem-website-favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Icon link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- flat icon link -->
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/4.0.0/uicons-brands/css/uicons-brands.css">
+
+
+  <!-- Theme Detection Script -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light') { 
+          document.documentElement.setAttribute('data-theme', 'light'); 
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+
+
+<body>
+
+  <!-- Background Animated Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Magic Mouse Cursor (decorative ring + dot that follow the real cursor;
+       the native pointer/hand cursor stays visible underneath, exactly like the reference demo) -->
+  <div class="m-magic-cursor" aria-hidden="true">
+    <div class="mmc-outer"></div>
+    <div class="mmc-inner"></div>
+  </div>
+
+  <div class="site-shell">
+    
+    <!-- Sidebar / Profile Panel -->
+    <aside class="sidebar">
+      <div class="brand-row">
+        <div class="brand"><img src="images/abdullah-al-niem-logo.png" alt="Niem Logo" style="height: 20px; margin-bottom: -2px;"></div>
+        <button class="theme-switch" id="themeSwitch" type="button" aria-label="Switch between dark and light theme" aria-pressed="false">
+          <span class="ts-icon ts-sun">☀</span>
+          <span class="ts-thumb"></span>
+          <span class="ts-icon ts-moon">☾</span>
+        </button>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-photo-wrap">
+          <div class="profile-photo">
+            <img src="images/about-pic.png" alt="Abdullah Al Niem" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')">
+            <span class="fallback-avatar">AAN</span>
+          </div>
+          <div class="badge badge-rating">
+            <span class="badge-icon">✦</span>
+            <div>
+              <small>Rating</small>
+              <strong>5.0</strong>
+            </div>
+          </div>
+          <div class="badge badge-status">
+            <span class="badge-icon"><i class="fi fi-rr-briefcase"></i></span>
+            <div>
+              <small>Status</small>
+              <strong>Open to Work</strong>
+            </div>
+          </div>
+        </div>
+
+        <h2>Abdullah Al Niem</h2>
+        <p>WordPress Developer & Shopify Expert</p>
+
+        <!-- Social Media Links -->
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/nayem-web/" aria-label="LinkedIn" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://github.com/Nayem-dev" aria-label="GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/infonayem1" aria-label="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/nayem_web/" aria-label="instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/nayem_web" aria-label="Twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.behance.net/info-nayem" aria-label="behance" target="_blank"><i class="fa fa-behance" aria-hidden="true"></i></a>
+          
+        </div>
+
+        <!-- Mini Contact Info -->
+        <div class="contact-mini">
+          <div>
+            <span>☎️</span>
+            <div>
+              <small>Phone</small>
+              <a href="tel:+880 1747 94 8282">+880 1747 94 8282</a>
+            </div>
+          </div>
+          <div>
+            <span>📧</span>
+            <div>
+              <small>Email</small>
+              <a href="mailto:wpwebforge1@gmail.com">wpwebforge1@gmail.com</a>
+            </div>
+          </div>
+          <div>
+            <span>📍</span>
+            <div>
+              <small>Location</small>
+              <strong>Dhaka, Bangladesh</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-actions">
+          <a class="cv-btn" href="#" id="cvBtn">Download CV <i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+          <a class="book-call-btn js-book-call" href="https://cal.com/wpweb-nayem/30min" target="_blank" rel="noopener">
+            Book a Call <i class="fa fa-calendar" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+
+      
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main">
+      
+      <!-- Top Navigation -->
+      <nav class="top-nav" aria-label="Primary navigation">
+        <button class="nav-btn active" data-section="home"><i class="fi fi-rr-home"></i> <span>Home</span></button>
+        <button class="nav-btn" data-section="about"><i class="fi fi-rr-user"></i> <span>About</span></button>
+        <button class="nav-btn" data-section="services"><i class="fi fi-rr-settings-sliders"> </i><span>Services</span></button>
+        <button class="nav-btn" data-section="resume"><i class="fi fi-rr-document"></i> <span>Resume</span></button>
+        <button class="nav-btn" data-section="projects"><i class="fi fi-rr-briefcase"></i> <span>Projects</span></button>
+        <button class="nav-btn" data-section="gallery"><i class="fi fi-rr-picture"></i> <span>Gallery</span></button>
+        <button class="nav-btn" data-section="reviews"><i class="fi fi-rr-star"></i> <span>Reviews</span></button>
+        <button class="nav-btn" data-section="blog"><i class="fi fi-rr-blog-text"></i> <span>Blog</span></button>
+        <button class="nav-btn" data-section="contact"><i class="fi fi-rr-envelope"></i> <span>Contact</span></button>
+      </nav>
+
+      <!-- Home Section -->
+      <section id="home" class="panel section-panel active">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">WELCOME</span>
+            <h1>Building digital experiences <em>that work.</em></h1>
+          </div>
+          <span class="availability">● Available for work</span>
+        </div>
+        
+        <p class="lead">
+          I help businesses turn ideas into fast, modern and conversion-focused websites that look professional, build trust and drive real results. From WordPress and Shopify to custom web solutions, I focus on clean design, seamless user experience and performance.
+        </p>
+
+        <div class="section-title">
+          <h2>What I <em>Do</em></h2>
+          <span></span>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="feature-card">
+            <div class="icon"><i class="fa fa-wordpress" aria-hidden="true"></i></div>
+            <h3>WordPress Development</h3>
+            <p>Professional, responsive WordPress websites built with Elementor, custom sections, dynamic content and modern layouts.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="icon"><i class="fa fa-etsy" aria-hidden="true"></i></div>
+            <h3>Elementor Development</h3>
+            <p>Pixel-perfect and conversion-focused websites using Elementor Pro, custom layouts, reusable sections and responsive design.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="icon">🛍️</div>
+            <h3>Shopify Development</h3>
+            <p>Modern Shopify stores with customized themes, responsive layouts and user-friendly eCommerce experiences.</p>
+          </article>
+          
+          
+          
+          <article class="feature-card">
+            <div class="icon">◎</div>
+            <h3>UI/UX Design</h3>
+            <p>Simple, user-focused layouts designed for clarity, trust and better conversions.</p>
+          </article>
+          
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ABOUT ME</span>
+            <h1 class="about-h1">Why you <em>hire me</em> for your next project?</h1>
+          </div>
+        </div>
+        
+        <div class="about-layout">
+          <div class="about-photo-wrap">
+            <div class="about-photo-deco"></div>
+            <div class="about-photo">
+              <img src="images/profile-front.jpg" alt="Abdullah Al Niem" onerror="this.style.display='none';this.parentElement.classList.add('photo-fallback')">
+              <span class="fallback-avatar">AAN</span>
+            </div>
+
+            <div class="about-stat-badge">
+              <span class="badge-icon">❤️</span>
+              <div>
+                <strong>80+</strong>
+                <small>Happy Clients</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="about-copy">
+            <p class="lead">
+              I’m Abdullah Al Niem, a WordPress Developer specializing in Elementor and modern website development. I’ve worked on business websites, eCommerce stores, landing pages and custom WordPress projects.
+            </p>
+            
+            <p class="lead">
+              My main expertise is WordPress, Elementor Pro and WooCommerce, with experience building clean, responsive and user-friendly websites. I’ve also been learning Shopify for the past year to expand my eCommerce development skills.
+            </p>
+
+            <p class="lead">
+              Whether it's a business website, an online store or a custom landing page, I focus on details that actually move the needle: speed, clarity and a smooth user experience across every device.
+            </p>
+
+            <a href="#contact" class="primary-btn" data-contact="true">Hire Me →</a>
+          </div>
+        </div>
+
+        <!-- Intro Video: Get to Know Me -->
+        <div class="achievement-highlight">
+          <div class="video-embed">
+            <div class="yt-video" data-yt-id="4Bc2-6omU-Q">
+              <div class="yt-player"></div>
+              <img class="yt-thumb" src="https://img.youtube.com/vi/4Bc2-6omU-Q/maxresdefault.jpg" alt="Get to know me - intro video" loading="lazy">
+              <div class="yt-controls">
+                <button class="yt-btn yt-play-btn" aria-label="Play video"><i class="fa fa-play" aria-hidden="true"></i></button>
+                <button class="yt-btn yt-mute-btn" aria-label="Mute" hidden><i class="fa fa-volume-up" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="achievement-text">
+            <span class="eyebrow">👋 GET TO KNOW ME</span>
+            <h2>A Little <em>About Me</em></h2>
+            <p>A short personal introduction - who I am, what I do, and how I like to work with clients on their projects.</p>
+          </div>
+        </div>
+
+        <!-- Achievement Highlight: WordPress Bootcamp Champion -->
+        <div class="achievement-highlight">
+          <div class="achievement-text">
+            <span class="eyebrow">🏆 ACHIEVEMENT</span>
+            <h2>WordPress Bootcamp <em>Champion</em></h2>
+            <p>Proud to have been crowned Champion at the WordPress Bootcamp — a small proof of the hands-on skills behind every project I deliver.</p>
+          </div>
+          <div class="video-embed">
+            <div class="yt-video" data-yt-id="fCzWZ06iuho">
+              <div class="yt-player"></div>
+              <img class="yt-thumb" src="https://img.youtube.com/vi/fCzWZ06iuho/maxresdefault.jpg" alt="WordPress Bootcamp Champion" loading="lazy">
+              <div class="yt-controls">
+                <button class="yt-btn yt-play-btn" aria-label="Play video"><i class="fa fa-play" aria-hidden="true"></i></button>
+                <button class="yt-btn yt-mute-btn" aria-label="Mute" hidden><i class="fa fa-volume-up" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">WHAT I OFFER</span>
+            <h1>Services that <em>move ideas forward.</em></h1>
+          </div>
+        </div>
+
+        <p class="lead">
+          I specialize in WordPress and Elementor, creating business websites, eCommerce stores, landing pages, blogs and booking systems with clean design and a smooth user experience.
+        </p>
+        <p class="lead">
+          Have a project in mind? Let’s build something that works for your business.
+        </p>
+
+        <div class="premium-services">
+          <article class="premium-service">
+            <div class="service-top">
+              <span class="service-number">01</span>
+              <div class="service-icon"><i class="fa fa-wordpress" aria-hidden="true"></i></div>
+            </div>
+            <h3>WordPress Development</h3>
+            <p>I build professional, responsive WordPress websites tailored to your business, personal brand or organization.</p>
+            <!-- <ul>
+              <li>Business & Corporate Websites</li>
+              <li>Portfolio Websites</li>
+              <li>Blog & News Websites</li>
+              <li>Custom WordPress Pages</li>
+              <li>Responsive & Mobile-Friendly Design</li>
+            </ul> -->
+            <a href="#contact" data-contact="true">Start a project <span>↗</span></a>
+          </article>
+
+          <article class="premium-service featured">
+            <div class="service-top">
+              <span class="service-number">02</span>
+              <div class="service-icon">E</div>
+            </div>
+            <h3>Elementor Pro Design</h3>
+            <p>Pixel-focused Elementor layouts with reusable sections, refined spacing, responsive styling and modern interactions.</p>
+            <!-- <ul>
+              <li>Figma to Elementor</li>
+              <li>Pixel-perfect sections</li>
+              <li>Mobile optimization</li>
+              <li>Landing Pages</li>
+              <li>Website Redesign</li>
+            </ul> -->
+            <a href="#contact" data-contact="true">Start a project <span>↗</span></a>
+          </article>
+
+          <article class="premium-service">
+            <div class="service-top">
+              <span class="service-number">03</span>
+              <div class="service-icon"><i class="fa fa-cart-plus" aria-hidden="true"></i></div>
+            </div>
+            <h3>WooCommerce Store</h3>
+            <p>Conversion-focused online stores with product presentation, shopping flow and a smooth checkout experience.</p>
+            <!-- <ul>
+              <li>WooCommerce Store Setup</li>
+              <li>Shop & product pages</li>
+              <li>Cart & Checkout Customization</li>
+              <li>Responsive storefront</li>
+              <li>Responsive eCommerce Design</li>
+            </ul> -->
+            <a href="#contact" data-contact="true">Start a project <span>↗</span></a>
+          </article>
+
+          <article class="premium-service">
+            <div class="service-top">
+              <span class="service-number">04</span>
+              <div class="service-icon">🤝</div>
+            </div>
+            <h3>Redesign & Optimization</h3>
+            <p>Transform an outdated website into a cleaner, faster and more trustworthy experience.</p>
+            <!-- <ul>
+              <li>UI/UX improvement</li>
+              <li>Speed-focused cleanup</li>
+              <li>Responsive fixes</li>
+              <li>Custom Post Types</li>
+              <li>Dynamic Listings</li>
+            </ul> -->
+            <a href="#contact" data-contact="true">Start a project <span>↗</span></a>
+          </article>
+
+          <article class="premium-service">
+            <div class="service-top">
+              <span class="service-number">05</span>
+              <div class="service-icon">🛍️</div>
+            </div>
+            <h3>Shopify Development</h3>
+            <p>I’ve been learning Shopify for the past year and have been building my knowledge around modern eCommerce store development and customization.</p>
+            <!-- <ul>
+              <li>Shopify Store Setup</li>
+              <li>Theme Customization</li>
+              <li>Store Page Design</li>
+              <li>Responsive Layouts</li>
+              <li>Replo, Gempages Expert</li>
+            </ul> -->
+            <a href="#contact" data-contact="true">Start a project <span>↗</span></a>
+          </article>
+
+
+          <article class="premium-service">
+            <div class="service-top">
+              <span class="service-number">06</span>
+              <div class="service-icon">⭐</div>
+            </div>
+            <h3>UI/UX & Landing Page Design</h3>
+            <p>I create clean and conversion-focused layouts that make it easier for visitors to understand your business and take action.</p>
+            <!-- <ul>
+              <li>Modern UI Design</li>
+              <li>Landing Pages</li>
+              <li>Clear Content Structure</li>
+              <li>Mobile Responsive Design</li>
+              <li>User-Friendly Navigation</li>
+            </ul> -->
+            <a href="#contact" data-contact="true">Start a project <span>↗</span></a>
+          </article>
+        </div>
+
+        <div class="section-title">
+          <h2>Tools I <em>Use</em></h2>
+          <span></span>
+        </div>
+        
+        <div class="tools-grid">
+          <div><i class="fa fa-wordpress" aria-hidden="true"></i> <strong>WordPress</strong></div>
+          <div><i class="fa fa-check-square-o" aria-hidden="true"></i> <strong>Elementor Pro</strong></div>
+          <div>◌ <strong>Figma</strong></div>
+          <div>◍ <strong>Photoshop</strong></div>
+          <div>🎨<strong>Canva Pro</strong></div>
+          <div>✦ <strong>ChatGPT</strong></div>
+          <div>✧ <strong>WooCommerce</strong></div>
+          <div>✺ <strong>GitHub</strong></div>
+        </div>
+
+        <div class="section-title">
+          <h2>Happy <em>Clients</em></h2>
+          <span></span>
+        </div>
+        
+        <p class="lead">I work with over 100+ happy clients across different industries.</p>
+        
+        <div class="clients-grid">
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-1.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-2.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-3.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-4.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+          
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-5.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-6.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-7.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-8.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-9.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-10.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-11.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-12.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-13.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-14.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-15.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-16.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-17.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+          <div class="client-card">
+            <div class="client-logo">
+              <img src="images/nayem-porfolio-client-logo-18.png" alt="nayem-porfolio-client-logo">
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Resume Section -->
+      <section id="resume" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">MY JOURNEY</span>
+            <h1>Resume & <em>Experience</em></h1>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <h2>Working <em>Experience</em></h2>
+          <span></span>
+        </div>
+
+        <div class="timeline">
+          <article>
+            <span class="year">Oct 2025 – Apr 2026</span>
+            <h3>WordPress Developer (Elementor Expert)</h3>
+            <h4>Grippersoft | Narayanganj, Bangladesh</h4>
+            <p>Building responsive WordPress websites, business websites, landing pages and WooCommerce experiences.</p>
+          </article>
+          
+          <article>
+            <span class="year">Jan 2025 – Sept 2025</span>
+            <h3>Web Designer & Developer</h3>
+            <h4>Softvence | Dhaka, Bangladesh</h4>
+            <p>Designed and developed client-focused websites with Elementor, Figma and modern UI principles.</p>
+          </article>
+          
+          <article>
+            <span class="year">Apr 2024 – Nov 2024</span>
+            <h3>Data Entry Executive</h3>
+            <h4>Golden Harvert Info Tech Ltd.</h4>
+            <p>Handled data entry, web research, document management, and digital content-related tasks with accuracy and attention to detail.</p>
+          </article>
+
+          <article>
+            <span class="year">Jan 2023 – Jul 2024</span>
+            <h3>English Teacher</h3>
+            <h4>A-One Academy (Coaching Centre) | Mirpur-2, Dhaka</h4>
+            <p>Provided English language instruction, supported students with communication skills, and prepared learning materials for effective classroom learning.</p>
+          </article>
+
+        </div>
+
+        <div class="section-title">
+          <h2>My <em>Education</em></h2>
+          <span></span>
+        </div>
+        
+        <div class="edu-timeline">
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-info">
+              <small>Dhaka Central University</small>
+              <strong> Bachelor of Art’s - History (Ongoing) (2021 - 2022)</strong>
+              <p>Result: 4th Year Running</p>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-info">
+              <small>New Govt. Degree College, Rajshahi </small>
+              <strong>Higher Secondary Certificate-HSC (2019-2021) </strong>
+              <p>Result: GPA-5.00 (Out Of 5)</p>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-info">
+              <small>Chahera Aladipur High School, Naogaon</small>
+              <strong>Secondary School Certificate-SSC (2014-2019)</strong>
+              <p>Result: GPA-5.00 (Out Of 5)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">
+          <h2>Core <em>Skills</em></h2>
+          <span></span>
+        </div>
+
+        <div class="skill-list">
+          <div><b>WordPress</b><span><i style="width:94%"></i></span><strong>94%</strong></div>
+          <div><b>Elementor Pro</b><span><i style="width:96%"></i></span><strong>96%</strong></div>
+          <div><b>DIVI</b><span><i style="width:90%"></i></span><strong>90%</strong></div>
+          <div><b>WooCommerce</b><span><i style="width:86%"></i></span><strong>86%</strong></div>
+          <div><b>Shopify</b><span><i style="width:85%"></i></span><strong>85%</strong></div>
+          <div><b>Replo</b><span><i style="width:80%"></i></span><strong>80%</strong></div>
+          <div><b>Gempages</b><span><i style="width:85%"></i></span><strong>85%</strong></div>
+        </div>
+
+        
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">MY WORK</span>
+            <h1>Selected <em>Projects</em></h1>
+          </div>
+        </div>
+
+        <div class="filters" id="projectFilters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="wordpress">WordPress</button>
+          <button class="filter" data-filter="elementor">Elementor</button>
+          <button class="filter" data-filter="Jetengine">Jetengine</button>
+          <button class="filter" data-filter="woodmart">WoodMart</button>
+          <button class="filter" data-filter="ecommerce">eCommerce</button>
+          <button class="filter" data-filter="shopify">Shopify</button>
+          <button class="filter" data-filter="uiux">UI/UX</button>
+          <button class="filter" data-filter="plumbing">Plumbing</button>
+          <button class="filter" data-filter="adult">Adult</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+
+          <article class="project-card" data-category="wordpress elementor" data-title="Pest & bug control services" data-url="https://mmpest.com.au/">
+            <div class="project-image gradient-a">
+              <!-- <span>ECOMMERCE</span> -->
+              <img src="images/projects/mmpest-control-in-usa.png" alt="mmpest-control-in-usa.png">
+            </div>
+            <div class="project-body">
+              <small>WordPress · Elementor</small>
+              <h3>Pest & bug control services</h3>
+              <p>Modern corporate website with responsive sections and conversion-focused layout.</p>
+              <button class="view-project"> View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="TranscendMental Breathwork" data-url="https://transcendmental.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>ECOMMERCE</span> -->
+              <img src="images/projects/transcend-mentalWebsite.jpg" alt="transcend-mentalWebsite.jpg">
+            </div>
+            <div class="project-body">
+              <small>WooCommerce</small>
+              <h3>TranscendMental Breathwork</h3>
+              <p>Product-focused shopping experience with clean UI and mobile-first design.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="uiux elementor" data-title="Grippersoft Digital" data-url="https://grippersoft.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>UI / UX</span> -->
+               <img src="images/projects/grippersoft-website.png" alt="grippersoft-website.png">
+            </div>
+            <div class="project-body">
+              <small>UI/UX · Elementor</small>
+              <h3>Grippersoft Website Design</h3>
+              <p>Elegant agency website with reusable content sections and responsive layout.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="wordpress ecommerce" data-title="Flet Happy Market" data-url="https://felthappymarket.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>AGENCY</span> -->
+               <img src="images/projects/felt-happy-market.jpg" alt="felt-happy-market.jpg">
+            </div>
+            <div class="project-body">
+              <small>WordPress</small>
+              <h3>Felt Happy Market</h3>
+              <p>Felt Happy Market helps you craft magical, screen-free gifts that spark imagination and connection.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor" data-title="New Walk Counsiling Service" data-url="https://www.newwalkcounselingservices.com">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/new-walk-counsiling-service.jpg" alt="new-walk-counsiling-service.jpg">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>NewWalk Counsiling Service</h3>
+              <p>New Walk Counseling Services is designed for the high-impact individual who needs a confidential space to take off the mask.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="adult wordpress" data-title="Smoke BY Nightr" data-url="https://smokebynight.com/">
+            <div class="project-image gradient-a">
+              <img src="images/projects/smoke-by-night-luxury-hookah-adult-website.png" alt="smoke-by-night">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>SMOKE BY NIGHT</h3>
+              <p>A Luxury and Premier Hookah Experience. Your Night Your Way.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="adult wordpress" data-title="BOHO Bar Trending" data-url="https://bohobartending.com/">
+            <div class="project-image gradient-a">
+              <img src="images/projects/boho-bar-website.png" alt="boho-bar-website.png">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>BOHO BARTENDING</h3>
+              <p>Bobo vibe on your event, turning every gathering into a chic. Celebration with handcrafted cocktails</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="wordpress elementor" data-title="Air Duct Cleaning Service" data-url="#">
+            <div class="project-image gradient-a">
+              <img src="images/projects/air-duct-cleaning-team.jpg" alt="air-duct-cleaning-team.jpg">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Air Duct Cleaning Service</h3>
+              <p>Modern corporate website with responsive sections and conversion-focused layout.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="South Bay Floor" data-url="https://sbfloorbros.com/new/">
+            <div class="project-image gradient-a">
+              <img src="images/projects/flor-bros-website.png" alt="flor-bros-website">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Gym Floor Contractors</h3>
+              <p>Serving all of California, South Bay Floor Bros pride ourselves on delivering exceptional quality.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor plumbing" data-title="It's Clearly Plumb" data-url="https://itsclearlyplumbing.com.au/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/its-clearly-plumbing-website.png" alt="its-clearly-plumbing-website">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>It’s Clearly Plumbing</h3>
+              <p>The Clear Choice for Plumbing.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="SunVision IQ" data-url="https://sunvisioniq.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/sunvision-iq-company.png" alt="sunvision-iq-company">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>SunVision IQ Company</h3>
+              <p>Through the vision of the sun, we create intelligent solutions.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="RX3 Communications" data-url="https://rx3communications.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/r3x-communications.png" alt="r3x-communications">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Rx3 Coommunication </h3>
+              <p>Delivering infrastructure. Powering federal missions.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Crown Leadership International Group" data-url="https://crownleadership.com.au/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/crownleadership.png" alt="crownleadership">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Crown Leadership International Group</h3>
+              <p>Crown Leadership International Group is a business organization.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor" data-title="Open Gets Projects" data-url="https://opengatesproject.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/open-gets-projects-constructions-website.png" alt="opengatesproject">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Opengates Project</h3>
+              <p>Great architecture is more than design.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor" data-title="Rucker Eletronic" data-url="https://ruckerelectric.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/rucker-electric-powering-tomorrow.png" alt="rucker-electric-powering-tomorrow">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Rucker Electric</h3>
+              <p>High Production Capacity and Reliable Lead Times</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Mekki App" data-url="#">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/mekki-app-website.png" alt="mekki-app-website">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Mekki App</h3>
+              <p>High Production Capacity and Reliable Lead Times</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Review Spot Website" data-url="https://rviewspot.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/real-reviews.png" alt="real-reviews">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Review Spot Website</h3>
+              <p>Modern corporate website with responsive sections and conversion-focused layout.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Roofingbox Company" data-url="https://dev-roofingbox-test.pantheonsite.io/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/roofingbox-company.png" alt="roofingbox-company">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Roofingbox Company</h3>
+              <p>Professional roof installation, replacement, repair, and inspection.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="shopify" data-title="Balkan Finance Academy" data-url="https://balkanfinanceacademy.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/balkan-finance-academy.png" alt="balkan-finance-academy">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Balkan Finance Academy</h3>
+              <p>This platform is the bridge between the untapped potential of the Balkans.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Relataionship with Ericka Ush" data-url="#">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/relationships.png" alt="relationships">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Relataionship with Ericka Ush</h3>
+              <p>Modern website with responsive sections and conversion-focused layout.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Commpound Media" data-url="https://commpound.io/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/connect-collaborate-create-impact.png" alt="connect-collaborate-create-impact">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Commpound Media</h3>
+              <p>Discover and connect with the right talent to amplify your business.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="elementor wordpress" data-title="Higher Power Solutions Net" data-url="https://higherpowersolutions.net/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/higher-power-solutions-net.png" alt="higher-power-solutions-net">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>Higher Power Solutions Net</h3>
+              <p>Commercial Security & Low-Voltage Systems in Charlotte, NC.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ecommerce wordpress" data-title="The Wilson Sister" data-url="https://thewilsonsisters.co.uk/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/the-wilson-sister.png" alt="the-wilson-sister">
+            </div>
+            <div class="project-body">
+              <small>wordpress · Elementor</small>
+              <h3>The Wilson Sister</h3>
+              <p>Two sisters. One mission. Keeping art and themselves afloat.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ecommerce" data-title="Premium Leather" data-url="https://darior.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/darior-premium-leather.png" alt="darior-premium-leather">
+            </div>
+            <div class="project-body">
+              <small>WooCommerce · Elementor</small>
+              <h3>Darior</h3>
+              <p>Darior has been a premium leather lifestyle brand website. </p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ecommerce elementor" data-title="Pawsitive Pet Care" data-url="https://pawsitive.grippersoft.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/pawsitive-pet-care-website.png" alt="pawsitive-pet-care-website">
+            </div>
+            <div class="project-body">
+              <small>WooCommerce · Elementor</small>
+              <h3>Pawsitive Pet Care</h3>
+              <p>Professional Veterinary Care for Your Beloved Pets. </p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="wordpress Jetengine" data-title="Corporate Law Associates" data-url="https://cla-bd.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/corporate-law-website.png" alt="corporate-law-website">
+            </div>
+            <div class="project-body">
+              <small>Custom WordPress · Elementor</small>
+              <h3>Corporate Law Associates</h3>
+              <p>Your Trusted Partner in Corporate Law & Tax Planning. </p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="WordPress elementor Jetengine" data-title="Nc Cleaning in USA" data-url="https://nccleaning.com.au/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/nccleaning-website-in-usa.png" alt="nccleaning-website-in-usa">
+            </div>
+            <div class="project-body">
+              <small>Jetengine · Elementor</small>
+              <h3>Nc Cleaning in USA</h3>
+              <p>Sydney Based 24/7 Residential & Commercial Property Cleaning & Maintenance Services.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="WordPress elementor" data-title="Rs Travel in Switzerand" data-url="https://rs-travels.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/rs-travel-adventure-website-mockup.png" alt="rs-travel-adventure-website-mockup">
+            </div>
+            <div class="project-body">
+              <small>Jetengine · Elementor</small>
+              <h3>Rs Travel in Switzerand</h3>
+              <p>Experience Switzerland With Comfort, Care & Complete Peace of Mind!</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="WordPress elementor" data-title="Digihub Limited" data-url="https://digihublimited.com/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/digiHub-digital-transformation.png" alt="digiHub-digital-transformation">
+            </div>
+            <div class="project-body">
+              <small>Jetengine · Elementor</small>
+              <h3>Digihub Limited</h3>
+              <p>DigiHub offers a complete range of cloud and IT solutions.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="woodmart elementor" data-title="Be Glam By Safrin" data-url="https://nccleaning.com.au/">
+            <div class="project-image gradient-a">
+              <!-- <span>STORE</span> -->
+               <img src="images/projects/be-glam-by-safrin.png" alt="be-glam-by-safrin">
+            </div>
+            <div class="project-body">
+              <small>Jetengine · WoodMart</small>
+              <h3>Be Glam By Safrin</h3>
+              <p>Be Glam by Safrin delivers premium beauty essentials and accessories, empowering women.</p>
+              <button class="view-project">View More →</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Gallery Section - Awards & Events -->
+      <section id="gallery" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">MOMENTS & RECOGNITION</span>
+            <h1>Awards & <em>Events</em></h1>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <figure class="gallery-item" data-caption="Abdullah Al Niem Photo's">
+            <img src="images/gallery/award-1.jpg" alt="Abdullah Al Niem Photo'sy" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Abdullah Al Niem Photo's">
+            <img src="images/gallery/award-2.jpg" alt="Abdullah Al Niem Photo's" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Abdullah Al Niem Photo's">
+            <img src="images/gallery/award-3.jpg" alt="Abdullah Al Niem Photo's" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Abdullah Al Niem Photo's">
+            <img src="images/gallery/award-4.jpg" alt="Abdullah Al Niem Photo's" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Abdullah Al Niem Photo's">
+            <img src="images/gallery/award-5.jpg" alt="Abdullah Al Niem Photo's" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Speaking at Event">
+            <img src="images/gallery/award-6.jpg" alt="Speaking at Event" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Workshop Session">
+            <img src="images/gallery/award-7.jpg" alt="Workshop Session" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="WP-Class Performance">
+            <img src="images/gallery/award-8.jpg" alt="WP-Class Performance" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="WordPress Bootcamp Champion">
+            <img src="images/gallery/award-9.jpg" alt="WordPress Bootcamp Champion" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Bootcamp Prize money">
+            <img src="images/gallery/award-10.jpg" alt="Bootcamp Prize money" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="LinkedIn Workshop Session">
+            <img src="images/gallery/award-11.jpg" alt="LinkedIn Workshop Session" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+          <figure class="gallery-item" data-caption="Freelancers Meetup">
+            <img src="images/gallery/award-12.jpg" alt="Freelancers Meetup" loading="lazy"
+                 onerror="this.closest('.gallery-item').classList.add('gallery-empty'); this.closest('.gallery-item').dataset.file=this.getAttribute('src'); this.remove();">
+          </figure>
+        </div>
+      </section>
+
+      <!-- Reviews Section -->
+      <section id="reviews" class="panel section-panel">
+        <div class="section-heading centered">
+          <div>
+            <span class="eyebrow">CLIENT FEEDBACK</span>
+            <h1>What Clients <em>Say</em></h1>
+          </div>
+        </div>
+
+        <div class="review-slider">
+          <div class="review-viewport">
+            <div class="review-track" id="reviewTrack">
+              
+              <article class="review-card">
+                <div class="quote">“</div>
+                <div class="stars">★★★★★</div>
+                <p>the seller did a good job</p>
+                <div class="reviewer">
+                  <div class="avatar">M</div>
+                  <div>
+                    <strong>markcco</strong>
+                    <small>United States</small>
+                  </div>
+                  <a href="https://www.fiverr.com/" target="_blank">Fiverr ↗</a>
+                </div>
+              </article>
+
+              <article class="review-card">
+                <div class="quote">“</div>
+                <div class="stars">★★★★★</div>
+                <p>Great communication and a clean final website. Everything was delivered as requested.</p>
+                <div class="reviewer">
+                  <div class="avatar">A</div>
+                  <div>
+                    <strong>Alex</strong>
+                    <small>United Kingdom</small>
+                  </div>
+                  <a href="https://www.fiverr.com/" target="_blank">Fiverr ↗</a>
+                </div>
+              </article>
+
+              <article class="review-card">
+                <div class="quote">“</div>
+                <div class="stars">★★★★★</div>
+                <p>Very professional work. The responsive design and attention to detail were excellent.</p>
+                <div class="reviewer">
+                  <div class="avatar">J</div>
+                  <div>
+                    <strong>James</strong>
+                    <small>Canada</small>
+                  </div>
+                  <a href="https://www.fiverr.com/" target="_blank">Fiverr ↗</a>
+                </div>
+              </article>
+
+              <article class="review-card">
+                <div class="quote">“</div>
+                <div class="stars">★★★★★</div>
+                <p>Very professional work. The responsive design and attention to detail were excellent.</p>
+                <div class="reviewer">
+                  <div class="avatar">F</div>
+                  <div>
+                    <strong>Iam Flex</strong>
+                    <small>Canada</small>
+                  </div>
+                  <a href="https://www.fiverr.com/" target="_blank">Fiverr ↗</a>
+                </div>
+              </article>
+
+              <article class="review-card">
+                <div class="quote">“</div>
+                <div class="stars">★★★★★</div>
+                <p>Very professional work. The responsive design and attention to detail were excellent.</p>
+                <div class="reviewer">
+                  <div class="avatar">N</div>
+                  <div>
+                    <strong>nimawould</strong>
+                    <small>USA</small>
+                  </div>
+                  <a href="https://www.fiverr.com/" target="_blank">Fiverr ↗</a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </div>
+        <div class="dots" id="reviewDots"></div>
+      </section>
+
+      <!-- Blog Section -->
+      <section id="blog" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">LATEST ARTICLES</span>
+            <h1>My <em>Blog</em></h1>
+          </div>
+        </div>
+
+        <!-- Blog List View -->
+        <div id="blogListView">
+          <div class="filters" id="blogFilters">
+            <button class="filter active" data-filter="all">All</button>
+            <button class="filter" data-filter="graphic">Graphic Design</button>
+            <button class="filter" data-filter="ai">AI & Design</button>
+            <button class="filter" data-filter="web">Web Design</button>
+            <button class="filter" data-filter="tutorial">Tutorials</button>
+            <button class="filter" data-filter="career">Career Tips</button>
+          </div>
+
+          <div class="blog-grid">
+            <article class="blog-card" data-category="ai">
+              <div class="blog-image b1"><img src="images/blog/ai-design-tools.jpg" alt="AI Design Tools: Midjourney, DALL-E & Adobe Firefly" onerror="this.remove()"></div>
+              <small>AI & Design · Apr 1, 2026</small>
+              <h3>AI Design Tools: Midjourney, DALL-E & Adobe Firefly</h3>
+              <p>A practical guide to choosing the right AI design workflow.</p>
+              <a href="#" class="read-article" data-post="ai-tools">Read Article →</a>
+            </article>
+
+            <article class="blog-card" data-category="web">
+              <div class="blog-image b2"><img src="images/blog/uiux-design-basics.jpg" alt="UI/UX Design Basics: App & Website Fundamentals" onerror="this.remove()"></div>
+              <small>Web Design · Apr 19, 2026</small>
+              <h3>UI/UX Design Basics: App & Website Fundamentals</h3>
+              <p>Core principles for building clear and user-friendly interfaces.</p>
+              <a href="#" class="read-article" data-post="uiux-basics">Read Article →</a>
+            </article>
+
+            <article class="blog-card" data-category="ai">
+              <div class="blog-image b3"><img src="images/blog/ai-web-design.jpg" alt="How AI Is Changing Modern Web Design" onerror="this.remove()"></div>
+              <small>AI & Design · Apr 3, 2026</small>
+              <h3>How AI Is Changing Modern Web Design</h3>
+              <p>What designers and developers should know about the new workflow.</p>
+              <a href="#" class="read-article" data-post="ai-web-design">Read Article →</a>
+            </article>
+
+            <article class="blog-card" data-category="tutorial">
+              <div class="blog-image b4"><img src="images/blog/responsive-wordpress.jpg" alt="How to Build a Responsive WordPress Website" onerror="this.remove()"></div>
+              <small>Tutorials · Mar 22, 2026</small>
+              <h3>How to Build a Responsive WordPress Website</h3>
+              <p>A simple checklist for creating a reliable responsive layout.</p>
+              <a href="#" class="read-article" data-post="responsive-wordpress">Read Article →</a>
+            </article>
+
+            <article class="blog-card" data-category="career">
+              <div class="blog-image b5"><img src="images/blog/developer-portfolio.jpg" alt="How to Build a Strong Developer Portfolio" onerror="this.remove()"></div>
+              <small>Career Tips · Mar 10, 2026</small>
+              <h3>How to Build a Strong Developer Portfolio</h3>
+              <p>Practical ideas for presenting projects and skills professionally.</p>
+              <a href="#" class="read-article" data-post="developer-portfolio">Read Article →</a>
+            </article>
+
+            <article class="blog-card" data-category="graphic">
+              <div class="blog-image b6"><img src="images/blog/design-systems.jpg" alt="Design Systems for Consistent Branding" onerror="this.remove()"></div>
+              <small>Graphic Design · Feb 28, 2026</small>
+              <h3>Design Systems for Consistent Branding</h3>
+              <p>Simple ways to keep visual identity consistent across digital products.</p>
+              <a href="#" class="read-article" data-post="design-systems">Read Article →</a>
+            </article>
+          </div>
+        </div>
+
+        <!-- Blog Article Single View -->
+        <div class="blog-article-view" id="blogArticleView" hidden>
+          <button class="back-link-btn" id="blogBackBtn">← Back to Blog</button>
+          <article class="article">
+            <div class="article-cover" id="blogCover"></div>
+            <div class="article-content">
+              <span class="eyebrow" id="blogCategory">ARTICLE</span>
+              <h1 id="blogTitle">Blog Article</h1>
+              <div class="article-meta" id="blogMeta"></div>
+              <div class="article-body" id="blogBody"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="panel section-panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">GET IN TOUCH</span>
+            <h1>Let's build something <em>great.</em></h1>
+          </div>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-copy">
+            <p>Have a project in mind? Send me a message and let's discuss your goals, timeline and requirements.</p>
+            
+            <div class="contact-detail">
+              <span>✉</span>
+              <div>
+                <small>Email</small>
+                <a href="mailto:wpwebforge1@gmail.com">wpwebforge1@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <span>⌖</span>
+              <div>
+                <small>Location</small>
+                <strong>Dhaka, Bangladesh</strong>
+              </div>
+            </div>
+
+            <a class="whatsapp-card" href="https://wa.me/+8801747948282" target="_blank" rel="noopener">
+              <span class="wa-icon">☎</span>
+              <span class="wa-text">Chat on WhatsApp <strong>+8801747-948282</strong></span>
+              <span class="wa-go">↗</span>
+            </a>
+
+            <a class="whatsapp-card book-call-card js-book-call" href="https://cal.com/wpweb-nayem/30min" target="_blank" rel="noopener">
+              <span class="wa-icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+              <span class="wa-text">Prefer to talk? <strong>Book a free 30-min call</strong></span>
+              <span class="wa-go">↗</span>
+            </a>
+
+            <div class="socials">
+              <a href="https://www.linkedin.com/in/nayem-web/" aria-label="LinkedIn" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a href="https://github.com/Nayem-dev" aria-label="GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+              <a href="https://www.facebook.com/infonayem1" aria-label="Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="https://www.instagram.com/nayem_web/" aria-label="instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+              <a href="https://x.com/nayem_web" aria-label="Twitter" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="https://www.behance.net/info-nayem" aria-label="behance" target="_blank"><i class="fa fa-behance" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="contact-detail response-detail">
+              <span>◔</span>
+              <div>Average response time: <strong>within 24 hours</strong></div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="contactForm">
+            <input required type="text" id="contactName" placeholder="Your Name">
+            <input required type="email" id="contactEmail" placeholder="Email Address">
+            <input type="text" id="contactSubject" placeholder="Subject">
+
+            <div class="form-row">
+              <input required type="tel" id="phoneNumber" placeholder="Mobile Number" inputmode="numeric" pattern="[0-9]{6,15}" maxlength="15">
+              <input required type="tel" id="waNumber" placeholder="WhatsApp Number" inputmode="numeric" pattern="[0-9]{6,15}" maxlength="15">
+            </div>
+
+            <select required id="contactService">
+              <option value="" disabled selected>Select a service</option>
+              <option value="wordpress">WordPress Development</option>
+              <option value="elementor">Elementor Pro Design</option>
+              <option value="woocommerce">WooCommerce Store</option>
+              <option value="redesign">Redesign & Optimization</option>
+              <option value="other">Other</option>
+            </select>
+            
+            <textarea required rows="6" id="contactMessage" placeholder="Tell me about your project..."></textarea>
+            <button class="primary-btn" type="submit">Send Message →</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>© 2026 Abdullah <span>Al Niem</span>. All Rights Reserved.</footer>
+    </main>
+
+  </div>
+
+  <!-- Project Details Modal -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="modal-image" id="modalImageWrap"></div>
+      <span class="eyebrow">PROJECT DETAILS</span>
+      <h2 id="modalTitle">Project</h2>
+      <p id="modalText"></p>
+      <div class="modal-tags">
+        <span>Responsive</span>
+        <span>Modern UI</span>
+        <span>Performance</span>
+      </div>
+      <a id="modalLink" class="primary-btn" href="#" target="_blank">Visit Live Project ↗</a>
+    </div>
+  </div>
+
+  <!-- CV Preview Modal -->
+  <div class="modal" id="cvModal" aria-hidden="true">
+    <div class="modal-box cv-box">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="cv-preview">
+        <iframe src="cv.pdf" title="Abdullah Al Niem CV Preview"></iframe>
+      </div>
+      <span class="eyebrow">MY RESUME</span>
+      <h2>Abdullah Al Niem — CV</h2>
+      <a class="primary-btn cv-download-btn" href="cv.pdf" download>Download CV <i class="fa fa-cloud-download" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <!-- Book a Call Modal (plain iframe - no third-party embed script, fully controlled by us) -->
+  <div class="modal" id="bookCallModal" aria-hidden="true">
+    <div class="modal-box book-call-box">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="book-call-preview">
+        <iframe src="about:blank" data-src="https://cal.com/wpweb-nayem/30min" title="Book a call with Abdullah Al Niem" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Lightbox -->
+  <div class="modal" id="galleryModal" aria-hidden="true">
+    <div class="modal-box gallery-box">
+      <button class="modal-close" aria-label="Close">×</button>
+      <img id="galleryModalImg" src="" alt="">
+      <p id="galleryModalCaption"></p>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal" aria-hidden="true">
+    <div class="modal-box success-box">
+      <button class="modal-close" aria-label="Close">×</button>
+      <div class="success-icon">✓</div>
+      <h2>Message Sent!</h2>
+      <p>Thank you for reaching out. I will contact you as soon as possible.</p>
+      <button class="primary-btn" id="successCloseBtn" type="button">Got it →</button>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <svg class="btt-ring" viewBox="0 0 44 44">
+      <circle class="btt-ring-bg" cx="22" cy="22" r="20"></circle>
+      <circle class="btt-ring-progress" cx="22" cy="22" r="20"></circle>
+    </svg>
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
