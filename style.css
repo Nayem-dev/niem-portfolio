@@ -2277,7 +2277,7 @@ footer span{
 }
 
 /* youtube pause button fixed */
-.yt-video { position: relative; }
+/* .yt-video { position: relative; }
 
 .yt-blocker {
   position: absolute;
@@ -2285,14 +2285,14 @@ footer span{
   z-index: 5;
   background: transparent;
   cursor: pointer;
-}
+} */
 
 /* Play/Mute বাটন blocker-এর উপরে থাকতে হবে */
-.yt-play-btn,
+/* .yt-play-btn,
 .yt-mute-btn {
   position: relative;
   z-index: 6;
-}
+} */
 /* youtube pause button fixed */
 
 
