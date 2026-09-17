@@ -2276,6 +2276,26 @@ footer span{
   background: rgba(0, 0, 0, 0.75);
 }
 
+/* youtube pause button fixed */
+.yt-video { position: relative; }
+
+.yt-blocker {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Play/Mute বাটন blocker-এর উপরে থাকতে হবে */
+.yt-play-btn,
+.yt-mute-btn {
+  position: relative;
+  z-index: 6;
+}
+/* youtube pause button fixed */
+
+
 @media (max-width: 900px) {
   .achievement-highlight {
     grid-template-columns: 1fr;
