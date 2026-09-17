@@ -403,93 +403,86 @@ modal.addEventListener('click', function(e) {
     document.head.appendChild(tag);
   }
 
-ytVideos.forEach(function(container) {
-  var videoId = container.dataset.ytId;
-  var playerDiv = container.querySelector('.yt-player');
-  var thumb = container.querySelector('.yt-thumb');
-  var playBtn = container.querySelector('.yt-play-btn');
-  var muteBtn = container.querySelector('.yt-mute-btn');
-  var playIcon = playBtn.querySelector('i');
-  var muteIcon = muteBtn.querySelector('i');
-  var player = null;
-  var started = false;
 
-  // --- নতুন: iframe-এর উপর transparent blocker ---
-  var blocker = document.createElement('div');
-  blocker.className = 'yt-blocker';
-  container.appendChild(blocker);
+  ytVideos.forEach(function(container) {
+    var videoId = container.dataset.ytId;
+    var playerDiv = container.querySelector('.yt-player');
+    var thumb = container.querySelector('.yt-thumb');
+    var playBtn = container.querySelector('.yt-play-btn');
+    var muteBtn = container.querySelector('.yt-mute-btn');
+    var playIcon = playBtn.querySelector('i');
+    var muteIcon = muteBtn.querySelector('i');
+    var player = null;
+    var started = false;
 
-  function setPlayIcon(name) {
-    playIcon.className = 'fa fa-' + name;
-  }
-
-  function togglePlay() {
-    if (!started) {
-      started = true;
-      loadYouTubeAPI();
-      if (apiReady) {
-        createPlayer();
-      } else {
-        pendingInits.push(createPlayer);
-      }
-      return;
+    function setPlayIcon(name) {
+      playIcon.className = 'fa fa-' + name;
     }
-    if (!player || typeof player.getPlayerState !== 'function') return;
-    if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-      player.pauseVideo();
-    } else {
-      player.playVideo();
-    }
-  }
 
-  function createPlayer() {
-    player = new YT.Player(playerDiv, {
-      videoId: videoId,
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-        iv_load_policy: 3,
-        disablekb: 1,
-        fs: 0,
-        playsinline: 1
-      },
-      events: {
-        onReady: function(e) {
-          thumb.style.display = 'none';
-          muteBtn.hidden = false;
-          e.target.playVideo();
+    function createPlayer() {
+      player = new YT.Player(playerDiv, {
+        videoId: videoId,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0,
+          showinfo: 0,
+          iv_load_policy: 3,
+          disablekb: 1,
+          fs: 0,
+          playsinline: 1
         },
-        onStateChange: function(e) {
-          if (e.data === YT.PlayerState.PLAYING) {
-            setPlayIcon('pause');
-          } else if (e.data === YT.PlayerState.PAUSED) {
-            setPlayIcon('play');
-          } else if (e.data === YT.PlayerState.ENDED) {
-            setPlayIcon('repeat');
+        events: {
+          onReady: function(e) {
+            thumb.style.display = 'none';
+            muteBtn.hidden = false;
+            e.target.playVideo();
+          },
+          onStateChange: function(e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+              setPlayIcon('pause');
+            } else if (e.data === YT.PlayerState.PAUSED) {
+              setPlayIcon('play');
+            } else if (e.data === YT.PlayerState.ENDED) {
+              setPlayIcon('repeat');
+            }
           }
         }
+      });
+    }
+
+    playBtn.addEventListener('click', function() {
+      if (!started) {
+        started = true;
+        loadYouTubeAPI();
+        if (apiReady) {
+          createPlayer();
+        } else {
+          pendingInits.push(createPlayer);
+        }
+        return;
+      }
+      if (!player || typeof player.getPlayerState !== 'function') return;
+      if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
       }
     });
-  }
 
-  // playBtn এবং blocker দুটোতেই একই toggle লজিক
-  playBtn.addEventListener('click', togglePlay);
-  blocker.addEventListener('click', togglePlay);
-
-  muteBtn.addEventListener('click', function() {
-    if (!player) return;
-    if (player.isMuted()) {
-      player.unMute();
-      muteIcon.className = 'fa fa-volume-up';
-    } else {
-      player.mute();
-      muteIcon.className = 'fa fa-volume-off';
-    }
+    muteBtn.addEventListener('click', function() {
+      if (!player) return;
+      if (player.isMuted()) {
+        player.unMute();
+        muteIcon.className = 'fa fa-volume-up';
+      } else {
+        player.mute();
+        muteIcon.className = 'fa fa-volume-off';
+      }
+    });
   });
-});
+})();
 
 
 /* ============================================================
